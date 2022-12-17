@@ -11,10 +11,10 @@ app.use(bp.json())
 app.use(bp.urlencoded({ extended: true }))
 
 app.use(cors({
-    "origin": "*",
-    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "preflightContinue": false,
-    "optionsSuccessStatus": 204
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 204
 }))
 
 const db = require('./config/db.js');
@@ -44,16 +44,6 @@ app.use('/api/user', user);
 app.use('/api/auth', auth);
 
 
-
-//Serve static assets when in production
-if(process.env.NODE_ENV === 'production'){
-    //Set static folder
-    app.use(express.static('./client/build'));
-
-    app.get('*', (req,res) =>{
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-    })
-}
 
 const PORT = process.env.PORT || 5000;
 
